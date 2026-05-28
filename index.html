@@ -149,36 +149,9 @@
       font-size: 1rem;
     }
 
-    .coming-soon {
-      text-align: center;
-      padding: 60px 20px;
-      background: #0e131c;
-      border-radius: 48px;
-      margin: 30px 0 40px;
-      border: 1px solid #1e2a36;
-    }
-    .coming-soon i {
-      font-size: 4rem;
-      color: #5B8CFF;
-      margin-bottom: 20px;
-      opacity: 0.7;
-    }
-    .coming-soon h3 {
-      font-size: 1.8rem;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, #B2F0E5, #5B8CFF);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .coming-soon p {
-      color: #8da0b0;
-      font-size: 1rem;
-    }
-
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
       margin: 30px 0 60px;
     }
@@ -189,6 +162,8 @@
       transition: all 0.3s ease;
       border: 1px solid #1e2a36;
       backdrop-filter: blur(2px);
+      display: flex;
+      flex-direction: column;
     }
     .product-card:hover {
       transform: translateY(-8px);
@@ -248,6 +223,7 @@
       text-decoration: none;
       color: #5B8CFF;
       font-family: inherit;
+      margin-top: auto;
     }
     .buy-link:hover {
       background: #5B8CFF;
@@ -255,15 +231,58 @@
       border-color: #5B8CFF;
     }
 
-    .free-badge {
+    .detail-btn {
+      background: transparent;
+      border: 1px solid #4a5b7a;
+      padding: 10px 0;
+      width: 100%;
+      border-radius: 100px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #b9c3cf;
+      font-family: inherit;
+      margin-bottom: 12px;
+    }
+    .detail-btn:hover {
+      background: rgba(91,140,255,0.15);
+      border-color: #5B8CFF;
+      color: #B2F0E5;
+    }
+
+    .badge-free {
       background: linear-gradient(135deg, #2a8c5e, #1e6b48);
       color: white;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
       padding: 4px 12px;
       border-radius: 30px;
       display: inline-block;
-      margin-bottom: 12px;
+    }
+
+    .badge-source {
+      background: linear-gradient(135deg, #6b46c1, #805ad5);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 30px;
+      display: inline-block;
+    }
+
+    .badge-paid {
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 30px;
+      display: inline-block;
     }
 
     .platform-icon {
@@ -274,8 +293,15 @@
       padding: 4px 12px;
       border-radius: 50px;
       font-size: 0.7rem;
-      margin-bottom: 16px;
       color: #B2F0E5;
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
     }
 
     .features {
@@ -317,6 +343,121 @@
       line-height: 1.45;
     }
 
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .modal-content {
+      background: #11161f;
+      max-width: 700px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      border-radius: 36px;
+      padding: 32px;
+      border: 1px solid #2a3a4a;
+      position: relative;
+      animation: fadeIn 0.2s ease;
+    }
+    .modal-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .modal-content::-webkit-scrollbar-track {
+      background: #1e2a36;
+      border-radius: 10px;
+    }
+    .modal-content::-webkit-scrollbar-thumb {
+      background: #5B8CFF;
+      border-radius: 10px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .modal-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #8da0b0;
+      transition: 0.2s;
+      background: #11161f;
+      padding-left: 12px;
+      z-index: 10;
+    }
+    .modal-close:hover {
+      color: #B2F0E5;
+    }
+    .modal-icon {
+      font-size: 2.5rem;
+      color: #5B8CFF;
+      margin-bottom: 16px;
+      clear: both;
+    }
+    .modal-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .modal-desc {
+      color: #9aaebf;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .modal-platform {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(91,140,255,0.15);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      margin-bottom: 20px;
+    }
+    .role-section {
+      background: #0a0c10;
+      border-radius: 24px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .role-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #B2F0E5;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .role-list {
+      list-style: none;
+      padding-left: 8px;
+    }
+    .role-list li {
+      color: #b9c3cf;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .role-list li i {
+      color: #5B8CFF;
+      font-size: 0.7rem;
+    }
+
     footer {
       background: #05070a;
       margin-top: 90px;
@@ -351,6 +492,12 @@
       font-size: 0.8rem;
       color: #5f7487;
     }
+    .social-icons a {
+    color: white;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
     @media (max-width: 768px) {
       .hero-content h1 { font-size: 2.5rem; }
       .hero-content p { max-width: 100%; }
@@ -368,7 +515,7 @@
         <span>Dev<span style="color:#B2F0E5;">Apps</span></span>
       </div>
       <ul class="nav-links">
-        <li><a href="#free">Gratis</a></li>
+        <li><a href="#aplikasi">Aplikasi</a></li>
         <li><a href="#fitur">Keunggulan</a></li>
       </ul>
     </div>
@@ -382,7 +529,7 @@
         <div class="hero-badge"><i class="fas fa-globe"></i>  android & website platform</div>
         <h1>Dev Apps<br>toko aplikasi android & website</h1>
         <p>Temukan berbagai aplikasi mobile Android dan website. Siap pakai untuk kebutuhan Anda.</p>
-        <a href="#free" class="buy-link" style="width: auto; padding: 12px 32px; display: inline-flex;">Jelajahi Sekarang →</a>
+        <a href="#aplikasi" class="buy-link" style="width: auto; padding: 12px 32px; display: inline-flex;">Jelajahi Sekarang →</a>
       </div>
       <div class="hero-image">
         <i class="fab fa-android"></i>
@@ -393,23 +540,15 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="coming-soon">
-      <i class="fas fa-globe"></i>
-      <h3>Aplikasi Website</h3>
-      <p>Masih dalam pengembangan, akan segera hadir untuk Anda.</p>
-    </div>
-  </div>
-
-  <div class="container" id="free">
-    <div class="section-title">Gratis unduh</div>
-    <div class="section-sub">Aplikasi free dari Dev Apps, tersedia untuk Android</div>
-    <div class="products-grid" id="freeAppsContainer"></div>
+  <div class="container" id="aplikasi">
+    <div class="section-title">📱 koleksi aplikasi</div>
+    <div class="section-sub">aplikasi Android & Website, gratis dan berbayar</div>
+    <div class="products-grid" id="allAppsContainer"></div>
   </div>
 
   <div class="container" id="fitur">
     <div class="features">
-      <div class="section-title" style="font-size: 1.8rem;">Mengapa dev apps?</div>
+      <div class="section-title" style="font-size: 1.8rem;">mengapa dev apps?</div>
       <div class="features-grid">
         <div class="feature-item">
           <i class="fas fa-rocket"></i>
@@ -441,58 +580,262 @@
     <div class="footer-inner">
       <div>
         <div class="footer-logo"><i class="fas fa-code"></i> DevApps</div>
-        <p style="max-width: 340px; color:#7d8e9e;">Toko aplikasi Android & Website</p>
-        <div class="social-icons" style="margin-top: 18px;"> 
-        </div>
+        <p style="max-width: 340px; color:#7d8e9e;">toko aplikasi Android & Website</p>
+          <div class="social-icons" style="margin-top: 18px;">
+            <a href="https://wa.me/+6282129665556" target="_blank">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
       </div>
     </div>
     <div class="copyright">© 2026 Dev Apps — toko aplikasi Android & Website</div>
   </div>
 </footer>
 
+<div id="detailModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-close" onclick="closeModal()">&times;</div>
+    <div class="modal-icon" id="modalIcon"></div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-platform" id="modalPlatform"></div>
+    <div class="modal-desc" id="modalDesc"></div>
+    <div id="modalPrice" style="font-size: 1.3rem; font-weight: 700; color: #B2F0E5; margin-bottom: 20px;"></div>
+    <div id="modalRoleDetails"></div>
+  </div>
+</div>
+
 <script>
-  const freeAppsData = [
+  const allAppsData = [
     {
-      id: 101,
-      name: "Profit Kalkulator",
-      desc: "Hitung margin keuntungan bisnis dengan mudah, cocok untuk pedagang dan pebisnis digital.",
-      icon: "fas fa-calculator",
+      id: 1,
+      name: "Catatan Investasi",
+      shortDesc: "Hitung margin keuntungan bisnis dengan mudah, cocok untuk pedagang dan pebisnis digital.",
+      fullDesc: "Aplikasi Catatan Investasi membantu Anda menghitung margin keuntungan bisnis dengan akurat. Dilengkapi fitur pencatatan transaksi, analisis keuntungan, laporan bulanan, dan grafik performa investasi. Cocok untuk pedagang, pebisnis digital, dan siapa saja yang ingin memantau perkembangan investasi dengan mudah dan cepat.",
+      icon: "fas fa-chart-line",
       platform: "Android",
-      playLink: "https://play.google.com/store/apps/details?id=com.devapp.profitcalc&hl=id"
+      price: 0,
+      priceText: "Gratis",
+      buyLink: "https://play.google.com/store/apps/details?id=com.devapp.profitcalc&hl=id",
+      isFree: true,
+      type: "free"
     },
     {
-      id: 102,
+      id: 2,
       name: "Atur Uang",
-      desc: "Kelola keuangan pribadi, catatan pemasukan & pengeluaran sederhana namun powerful.",
+      shortDesc: "Kelola keuangan pribadi, catatan pemasukan & pengeluaran sederhana namun powerful.",
+      fullDesc: "Atur Uang adalah aplikasi pencatat keuangan pribadi yang sederhana namun powerful. Fitur utama: catat pemasukan dan pengeluaran, buat budget bulanan, lihat sisa saldo realtime, dan laporan keuangan mingguan. Cocok untuk Anda yang ingin lebih disiplin dalam mengelola keuangan sehari-hari.",
       icon: "fas fa-wallet",
       platform: "Android",
-      playLink: "https://play.google.com/store/apps/details?id=com.djrproject.aturuang&hl=id"
+      price: 0,
+      priceText: "Gratis",
+      buyLink: "https://play.google.com/store/apps/details?id=com.djrproject.aturuang&hl=id",
+      isFree: true,
+      type: "free"
+    },
+    {
+      id: 3,
+      name: "Sistem Manajemen Inventory",
+      shortDesc: "Kelola stok barang, tracking masuk keluar, laporan realtime, dan manajemen gudang lengkap.",
+      fullDesc: "Sistem Manajemen Inventory adalah aplikasi web untuk mengelola stok barang, tracking barang masuk dan keluar, manajemen gudang multi-lokasi, laporan stok realtime, notifikasi stok menipis, dan analisis pergerakan barang. Dilengkapi dengan source code lengkap sehingga Anda bisa mengembangkan dan menyesuaikan sesuai kebutuhan bisnis.",
+      icon: "fas fa-boxes",
+      platform: "Website",
+      price: 499000,
+      priceText: "Rp3.499.000",
+      buyLink: "#",
+      isFree: false,
+      hasSourceCode: true,
+      type: "paid",
+      roleDetails: {
+        admin: {
+          title: "👑 Admin - Akses Penuh",
+          items: [
+            "Manajemen produk, member, reseller, supplier",
+            "Purchase Order (pembelian barang)",
+            "Retur pembelian ke supplier",
+            "Manajemen user dan backup database",
+            "Aktivitas log"
+          ]
+        },
+        pimpinan: {
+          title: "📊 Pimpinan - Akses Laporan Lengkap (Read Only)",
+          items: [
+            "Laporan Laba Rugi",
+            "Laporan Arus Kas",
+            "Laporan Omset Penjualan",
+            "Laporan Profit per Produk",
+            "Laporan Hutang & Piutang",
+            "Semua Transaksi"
+          ]
+        },
+        kasir: {
+          title: "🛒 Kasir - Fokus Transaksi Penjualan",
+          items: [
+            "Transaksi penjualan dengan keranjang",
+            "Diskon otomatis (member/reseller/diskon khusus)",
+            "Retur penjualan langsung",
+            "Piutang member",
+            "Riwayat transaksi"
+          ]
+        }
+      }
     }
   ];
 
-  function renderFreeApps() {
-    const container = document.getElementById("freeAppsContainer");
+  function renderAllApps() {
+    const container = document.getElementById("allAppsContainer");
     if (!container) return;
     container.innerHTML = "";
-    freeAppsData.forEach(app => {
+    allAppsData.forEach(app => {
       const card = document.createElement("div");
       card.className = "product-card";
+      
+      let platformIcon = '';
+      if (app.platform === "Android") {
+        platformIcon = '<span class="platform-icon"><i class="fab fa-android"></i> Android</span>';
+      } else {
+        platformIcon = '<span class="platform-icon"><i class="fas fa-globe"></i> Website</span>';
+      }
+      
+      let badgeHtml = '';
+      if (app.isFree) {
+        badgeHtml = '<span class="badge-free"><i class="fas fa-gift"></i> GRATIS</span>';
+      } else if (app.hasSourceCode) {
+        badgeHtml = '<span class="badge-paid"><i class="fas fa-crown"></i> PREMIUM</span><span class="badge-source"><i class="fas fa-code"></i> Source Code</span>';
+      } else {
+        badgeHtml = '<span class="badge-paid"><i class="fas fa-crown"></i> PREMIUM</span>';
+      }
+      
+      let priceHtml = '';
+      if (app.isFree) {
+        priceHtml = `<div class="price" style="color:#2a8c5e;">Rp0 <small>free</small></div>`;
+      } else {
+        priceHtml = `<div class="price">${app.priceText} <small>Customizable</small></div>`;
+      }
+      
+      let buttonHtml = '';
+      if (app.isFree) {
+        buttonHtml = `<a href="${app.buyLink}" class="buy-link" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-google-play"></i> Download di Play Store
+        </a>`;
+      } else {
+        buttonHtml = `<a href="${app.buyLink}" class="buy-link" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-arrow-right"></i> Beli sekarang
+        </a>`;
+      }
+      
       card.innerHTML = `
         <div class="product-icon"><i class="${app.icon}"></i></div>
-        <div class="platform-icon"><i class="fab fa-android"></i> ${app.platform}</div>
-        <div class="free-badge">GRATIS</div>
+        <div class="badge-group">
+          ${platformIcon}
+          ${badgeHtml}
+        </div>
         <div class="product-title">${app.name}</div>
-        <div class="product-desc">${app.desc}</div>
-        <div class="price" style="color:#2a8c5e;">Rp0 <small>free</small></div>
-        <a href="${app.playLink}" class="buy-link" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-google-play"></i> Download di Play Store
-        </a>
+        <div class="product-desc">${app.shortDesc}</div>
+        ${priceHtml}
+        <button class="detail-btn" data-id="${app.id}">
+          <i class="fas fa-info-circle"></i> Detail
+        </button>
+        ${buttonHtml}
       `;
       container.appendChild(card);
     });
+    
+    document.querySelectorAll('.detail-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = parseInt(btn.getAttribute('data-id'));
+        const app = allAppsData.find(a => a.id === id);
+        if (app) {
+          openModal(app);
+        }
+      });
+    });
+    
+    const allBuyLinks = document.querySelectorAll('#allAppsContainer .buy-link');
+    allBuyLinks.forEach(link => {
+      if(link.getAttribute('href') === '#') {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('🔗 Tautan pembelian akan segera tersedia. Hubungi admin untuk info lebih lanjut.');
+        });
+      }
+    });
   }
 
-  renderFreeApps();
+  function openModal(app) {
+    const modal = document.getElementById('detailModal');
+    const modalIcon = document.getElementById('modalIcon');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalPlatform = document.getElementById('modalPlatform');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalRoleDetails = document.getElementById('modalRoleDetails');
+    
+    let platformIcon = '';
+    if (app.platform === "Android") {
+      platformIcon = '<i class="fab fa-android"></i> Android';
+    } else {
+      platformIcon = '<i class="fas fa-globe"></i> Website';
+    }
+    
+    let sourceCodeText = '';
+    if (app.hasSourceCode) {
+      sourceCodeText = ' + <i class="fas fa-code"></i> Source Code';
+    }
+    
+    modalIcon.innerHTML = `<i class="${app.icon}"></i>`;
+    modalTitle.innerText = app.name;
+    modalPlatform.innerHTML = platformIcon + sourceCodeText;
+    modalDesc.innerText = app.fullDesc;
+    
+    if (app.isFree) {
+      modalPrice.innerHTML = '💰 Gratis';
+    } else {
+      modalPrice.innerHTML = `💰 ${app.priceText} <span style="font-size:0.9rem;">(lifetime + source code)</span>`;
+    }
+    
+    if (app.roleDetails) {
+      modalRoleDetails.innerHTML = `
+        <div class="role-section">
+          <div class="role-title">${app.roleDetails.admin.title}</div>
+          <ul class="role-list">
+            ${app.roleDetails.admin.items.map(item => `<li><i class="fas fa-check-circle"></i> ${item}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="role-section">
+          <div class="role-title">${app.roleDetails.pimpinan.title}</div>
+          <ul class="role-list">
+            ${app.roleDetails.pimpinan.items.map(item => `<li><i class="fas fa-chart-line"></i> ${item}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="role-section">
+          <div class="role-title">${app.roleDetails.kasir.title}</div>
+          <ul class="role-list">
+            ${app.roleDetails.kasir.items.map(item => `<li><i class="fas fa-shopping-cart"></i> ${item}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+    } else {
+      modalRoleDetails.innerHTML = '';
+    }
+    
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('detailModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById('detailModal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+
+  renderAllApps();
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
