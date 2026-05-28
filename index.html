@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Dev Apps | Toko Aplikasi Android & Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #0a0c10;
+      color: #e8edf2;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: sticky;
+      top: 0;
+      background: rgba(10,12,16,0.85);
+      backdrop-filter: blur(12px);
+      z-index: 50;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #B2F0E5, #5B8CFF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logo i {
+      background: none;
+      color: #5B8CFF;
+      font-size: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #b9c3cf;
+      font-weight: 500;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: #B2F0E5;
+    }
+
+    .hero {
+      padding: 80px 0 70px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+    }
+    .hero-content {
+      flex: 1.2;
+    }
+    .hero-badge {
+      background: rgba(91,140,255,0.12);
+      color: #B2F0E5;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 28px;
+      border: 0.5px solid rgba(91,140,255,0.3);
+    }
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+      margin-bottom: 24px;
+      background: linear-gradient(to right, #ffffff, #B2F0E5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-content p {
+      font-size: 1.15rem;
+      color: #9aaebf;
+      max-width: 90%;
+      margin-bottom: 36px;
+    }
+    .hero-image {
+      flex: 1;
+      background: radial-gradient(circle at 30% 20%, #1a1f2a, #0a0c10);
+      border-radius: 40px;
+      padding: 30px 20px;
+      text-align: center;
+      border: 1px solid rgba(91,140,255,0.2);
+    }
+    .hero-image i {
+      font-size: 6rem;
+      color: #5B8CFF;
+      margin: 0 6px;
+      filter: drop-shadow(0 8px 20px rgba(91,140,255,0.2));
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 650;
+      letter-spacing: -0.3px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .section-sub {
+      text-align: center;
+      color: #8da0b0;
+      margin-bottom: 54px;
+      font-size: 1rem;
+    }
+
+    .coming-soon {
+      text-align: center;
+      padding: 60px 20px;
+      background: #0e131c;
+      border-radius: 48px;
+      margin: 30px 0 40px;
+      border: 1px solid #1e2a36;
+    }
+    .coming-soon i {
+      font-size: 4rem;
+      color: #5B8CFF;
+      margin-bottom: 20px;
+      opacity: 0.7;
+    }
+    .coming-soon h3 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #B2F0E5, #5B8CFF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .coming-soon p {
+      color: #8da0b0;
+      font-size: 1rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin: 30px 0 60px;
+    }
+    .product-card {
+      background: #11161f;
+      border-radius: 36px;
+      padding: 32px 24px 32px;
+      transition: all 0.3s ease;
+      border: 1px solid #1e2a36;
+      backdrop-filter: blur(2px);
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: #5B8CFF;
+      box-shadow: 0 20px 35px -15px rgba(91,140,255,0.2);
+      background: #131a24;
+    }
+    .product-icon {
+      font-size: 2.5rem;
+      background: rgba(91,140,255,0.12);
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 24px;
+      margin-bottom: 24px;
+      color: #B2F0E5;
+    }
+    .product-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+    .product-desc {
+      color: #9aaebf;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+    .price {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #B2F0E5;
+      margin: 18px 0 22px;
+    }
+    .price small {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #7c8f9e;
+    }
+    .buy-link {
+      background: transparent;
+      border: 1px solid #5B8CFF;
+      padding: 12px 0;
+      width: 100%;
+      border-radius: 100px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #5B8CFF;
+      font-family: inherit;
+    }
+    .buy-link:hover {
+      background: #5B8CFF;
+      color: #0a0c10;
+      border-color: #5B8CFF;
+    }
+
+    .free-badge {
+      background: linear-gradient(135deg, #2a8c5e, #1e6b48);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 30px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .platform-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(91,140,255,0.15);
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      margin-bottom: 16px;
+      color: #B2F0E5;
+    }
+
+    .features {
+      background: #0e131c;
+      border-radius: 48px;
+      padding: 52px 32px;
+      margin: 70px 0 50px;
+      border: 1px solid #1a2530;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .feature-item {
+      text-align: center;
+      padding: 8px;
+    }
+    .feature-item i {
+      font-size: 2.5rem;
+      background: rgba(91,140,255,0.1);
+      padding: 16px;
+      border-radius: 32px;
+      color: #B2F0E5;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    .feature-item h4 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      color: #e0e8f0;
+    }
+    .feature-item p {
+      color: #8a9cb0;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    footer {
+      background: #05070a;
+      margin-top: 90px;
+      padding: 48px 0 28px;
+      border-top: 1px solid #18222c;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .footer-logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #B2F0E5, #5B8CFF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 14px;
+    }
+    .social-icons i {
+      font-size: 1.3rem;
+      margin-right: 20px;
+      color: #6c8196;
+      transition: 0.2s;
+    }
+    .social-icons i:hover { color: #B2F0E5; }
+    .copyright {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 0.8rem;
+      color: #5f7487;
+    }
+    @media (max-width: 768px) {
+      .hero-content h1 { font-size: 2.5rem; }
+      .hero-content p { max-width: 100%; }
+      .navbar { flex-direction: column; align-items: flex-start; }
+      .features-grid { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <i class="fas fa-code"></i>
+        <span>Dev<span style="color:#B2F0E5;">Apps</span></span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#free">Gratis</a></li>
+        <li><a href="#fitur">Keunggulan</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-globe"></i>  android & website platform</div>
+        <h1>Dev Apps<br>toko aplikasi android & website</h1>
+        <p>Temukan berbagai aplikasi mobile Android dan website. Siap pakai untuk kebutuhan Anda.</p>
+        <a href="#free" class="buy-link" style="width: auto; padding: 12px 32px; display: inline-flex;">Jelajahi Sekarang →</a>
+      </div>
+      <div class="hero-image">
+        <i class="fab fa-android"></i>
+        <i class="fas fa-globe"></i>
+        <i class="fas fa-laptop-code"></i>
+        <p style="margin-top: 22px; font-size: 0.85rem; opacity: 0.7;">Android · Website</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="coming-soon">
+      <i class="fas fa-globe"></i>
+      <h3>Aplikasi Website</h3>
+      <p>Masih dalam pengembangan, akan segera hadir untuk Anda.</p>
+    </div>
+  </div>
+
+  <div class="container" id="free">
+    <div class="section-title">Gratis unduh</div>
+    <div class="section-sub">Aplikasi free dari Dev Apps, tersedia untuk Android</div>
+    <div class="products-grid" id="freeAppsContainer"></div>
+  </div>
+
+  <div class="container" id="fitur">
+    <div class="features">
+      <div class="section-title" style="font-size: 1.8rem;">Mengapa dev apps?</div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fas fa-rocket"></i>
+          <h4>Instan deploy</h4>
+          <p>Siap pakai</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-chalkboard-user"></i>
+          <h4>Garansi Tutorial</h4>
+          <p>Tutorial sampai aplikasi bisa dipakai.</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-infinity"></i>
+          <h4>Lifetime</h4>
+          <p>Sekali beli untuk seumur hidup.</p>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-gift"></i>
+          <h4>Ada Aplikasi Gratis</h4>
+          <p>Tersedia aplikasi free yang bisa langsung kamu unduh.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo"><i class="fas fa-code"></i> DevApps</div>
+        <p style="max-width: 340px; color:#7d8e9e;">Toko aplikasi Android & Website</p>
+        <div class="social-icons" style="margin-top: 18px;"> 
+        </div>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Dev Apps — toko aplikasi Android & Website</div>
+  </div>
+</footer>
+
+<script>
+  const freeAppsData = [
+    {
+      id: 101,
+      name: "Profit Kalkulator",
+      desc: "Hitung margin keuntungan bisnis dengan mudah, cocok untuk pedagang dan pebisnis digital.",
+      icon: "fas fa-calculator",
+      platform: "Android",
+      playLink: "https://play.google.com/store/apps/details?id=com.devapp.profitcalc&hl=id"
+    },
+    {
+      id: 102,
+      name: "Atur Uang",
+      desc: "Kelola keuangan pribadi, catatan pemasukan & pengeluaran sederhana namun powerful.",
+      icon: "fas fa-wallet",
+      platform: "Android",
+      playLink: "https://play.google.com/store/apps/details?id=com.djrproject.aturuang&hl=id"
+    }
+  ];
+
+  function renderFreeApps() {
+    const container = document.getElementById("freeAppsContainer");
+    if (!container) return;
+    container.innerHTML = "";
+    freeAppsData.forEach(app => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <div class="product-icon"><i class="${app.icon}"></i></div>
+        <div class="platform-icon"><i class="fab fa-android"></i> ${app.platform}</div>
+        <div class="free-badge">GRATIS</div>
+        <div class="product-title">${app.name}</div>
+        <div class="product-desc">${app.desc}</div>
+        <div class="price" style="color:#2a8c5e;">Rp0 <small>free</small></div>
+        <a href="${app.playLink}" class="buy-link" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-google-play"></i> Download di Play Store
+        </a>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  renderFreeApps();
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if(targetId === "#" || targetId === "") return;
+      const targetElement = document.querySelector(targetId);
+      if(targetElement) {
+        e.preventDefault();
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
