@@ -3,256 +3,334 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Dev Apps | Toko Aplikasi Android & Website</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Dev Apps Store - Toko Aplikasi Android & Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      transition: background-color 0.25s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    :root {
+      --bg-body: #0F0F0F;
+      --bg-surface: #1C1C1C;
+      --bg-elevated: #252525;
+      --bg-card: #1C1C1C;
+      --border-subtle: #2C2C2C;
+      --text-primary: #FFFFFF;
+      --text-secondary: #C0C0C0;
+      --text-muted: #8A8A8A;
+      --accent: #0078D4;
+      --accent-hover: #106EBE;
+      --hero-gradient: linear-gradient(135deg, #0A1F2E 0%, #0A2A3B 100%);
+      --shadow: 0 8px 20px rgba(0,0,0,0.4);
+      --header-border: #262626;
+      --input-bg: #262626;
+      --icon-color: #E0E0E0;
+      --platform-bg: rgba(91,140,255,0.2);
+      --platform-text: #B2F0E5;
+    }
+
+    body.light {
+      --bg-body: #F2F2F2;
+      --bg-surface: #FFFFFF;
+      --bg-elevated: #F9F9F9;
+      --bg-card: #FFFFFF;
+      --border-subtle: #E0E0E0;
+      --text-primary: #1A1A1A;
+      --text-secondary: #3C3C3C;
+      --text-muted: #6E6E6E;
+      --accent: #0067B8;
+      --accent-hover: #005A9E;
+      --hero-gradient: linear-gradient(135deg, #E6F2F9 0%, #D4E6F4 100%);
+      --shadow: 0 8px 20px rgba(0,0,0,0.08);
+      --header-border: #D1D1D1;
+      --input-bg: #F0F0F0;
+      --icon-color: #2C2C2C;
+      --platform-bg: rgba(0,103,184,0.12);
+      --platform-text: #0067B8;
     }
 
     body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: #0a0c10;
-      color: #e8edf2;
-      line-height: 1.5;
-      scroll-behavior: smooth;
+      font-family: 'Segoe UI', 'Segoe UI Variable', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-elevated);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-subtle);
+      border-radius: 8px;
     }
 
     .container {
-      max-width: 1280px;
+      max-width: 1600px;
       margin: 0 auto;
-      padding: 0 28px;
+      padding: 0 32px;
     }
 
-    header {
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+    .main-header {
+      background-color: var(--bg-body);
+      border-bottom: 1px solid var(--header-border);
       position: sticky;
       top: 0;
-      background: rgba(10,12,16,0.85);
-      backdrop-filter: blur(12px);
-      z-index: 50;
+      z-index: 100;
+      backdrop-filter: blur(0px);
     }
-
-    .navbar {
+    .header-wrapper {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 12px 0;
       flex-wrap: wrap;
+      gap: 16px;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .store-icon {
+      font-size: 28px;
+      color: var(--accent);
+    }
+    .store-name {
+      font-size: 22px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .store-badge {
+      font-weight: 600;
+      font-size: 14px;
+      background: var(--bg-elevated);
+      padding: 2px 8px;
+      border-radius: 20px;
+      color: var(--text-secondary);
+    }
+    .search-container {
+      flex: 1;
+      max-width: 520px;
+      min-width: 240px;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--input-bg);
+      border-radius: 32px;
+      padding: 8px 16px;
+      border: 1px solid var(--border-subtle);
+    }
+    .search-box:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.3);
+    }
+    .search-box i {
+      color: var(--text-muted);
+    }
+    .search-box input {
+      background: transparent;
+      border: none;
+      padding: 8px 12px;
+      font-size: 15px;
+      width: 100%;
+      color: var(--text-primary);
+      outline: none;
+    }
+    .nav-icons {
+      display: flex;
+      align-items: center;
       gap: 20px;
     }
-
-    .logo {
+    .theme-toggle {
+      background: var(--bg-elevated);
+      border-radius: 30px;
+      padding: 6px 12px;
       display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #B2F0E5, #5B8CFF);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .logo i {
-      background: none;
-      color: #5B8CFF;
-      font-size: 2rem;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: #b9c3cf;
-      font-weight: 500;
-      transition: 0.2s;
-      font-size: 0.95rem;
-    }
-    .nav-links a:hover {
-      color: #B2F0E5;
-    }
-
-    .hero {
-      padding: 80px 0 70px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 50px;
-    }
-    .hero-content {
-      flex: 1.2;
-    }
-    .hero-badge {
-      background: rgba(91,140,255,0.12);
-      color: #B2F0E5;
-      display: inline-flex;
-      align-items: center;
       gap: 8px;
-      padding: 6px 16px;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      margin-bottom: 28px;
-      border: 0.5px solid rgba(91,140,255,0.3);
     }
-    .hero-content h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -1.5px;
-      margin-bottom: 24px;
-      background: linear-gradient(to right, #ffffff, #B2F0E5);
+    .theme-toggle i {
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .category-strip {
+      background: var(--bg-body);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 12px 0;
+    }
+    .categories {
+      display: flex;
+      gap: 28px;
+      overflow-x: auto;
+    }
+    .categories span {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+    }
+    .categories span:hover, .categories span.active {
+      color: var(--text-primary);
+      border-bottom-color: var(--accent);
+    }
+
+    .hero-banner {
+      background: var(--hero-gradient);
+      margin: 24px 0 32px 0;
+      border-radius: 28px;
+      padding: 36px 42px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow);
+    }
+    .hero-text h1 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text-primary), var(--accent));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
-    .hero-content p {
-      font-size: 1.15rem;
-      color: #9aaebf;
-      max-width: 90%;
-      margin-bottom: 36px;
-    }
-    .hero-image {
-      flex: 1;
-      background: radial-gradient(circle at 30% 20%, #1a1f2a, #0a0c10);
-      border-radius: 40px;
-      padding: 30px 20px;
-      text-align: center;
-      border: 1px solid rgba(91,140,255,0.2);
-    }
-    .hero-image i {
-      font-size: 6rem;
-      color: #5B8CFF;
-      margin: 0 6px;
-      filter: drop-shadow(0 8px 20px rgba(91,140,255,0.2));
-    }
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 650;
-      letter-spacing: -0.3px;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-    .section-sub {
-      text-align: center;
-      color: #8da0b0;
-      margin-bottom: 54px;
+    .hero-text p {
       font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      max-width: 550px;
+    }
+    .btn-primary {
+      background: var(--accent);
+      border: none;
+      padding: 10px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 15px;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: scale(1.02);
+    }
+    .hero-icon i {
+      font-size: 90px;
+      color: rgba(255,255,255,0.2);
+    }
+    body.light .hero-icon i {
+      color: rgba(0,0,0,0.1);
     }
 
-    .products-grid {
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin: 40px 0 20px 0;
+    }
+    .section-header h2 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    .section-link {
+      color: var(--accent);
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      margin: 30px 0 60px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+      margin-bottom: 40px;
     }
     .product-card {
-      background: #11161f;
-      border-radius: 36px;
-      padding: 32px 24px 32px;
-      transition: all 0.3s ease;
-      border: 1px solid #1e2a36;
-      backdrop-filter: blur(2px);
-      display: flex;
-      flex-direction: column;
+      background: var(--bg-card);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
     }
     .product-card:hover {
-      transform: translateY(-8px);
-      border-color: #5B8CFF;
-      box-shadow: 0 20px 35px -15px rgba(91,140,255,0.2);
-      background: #131a24;
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-color: var(--accent);
     }
-    .product-icon {
-      font-size: 2.5rem;
-      background: rgba(91,140,255,0.12);
-      width: 70px;
-      height: 70px;
+    .card-img {
+      background: var(--bg-elevated);
+      height: 170px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 24px;
-      margin-bottom: 24px;
-      color: #B2F0E5;
+      font-size: 68px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .card-content {
+      padding: 18px 18px 22px;
+    }
+    .product-category {
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      font-weight: 600;
     }
     .product-title {
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      letter-spacing: -0.3px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
     .product-desc {
-      color: #9aaebf;
-      margin-bottom: 20px;
-      font-size: 0.9rem;
-      line-height: 1.45;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.4;
     }
-    .price {
-      font-size: 1.7rem;
-      font-weight: 700;
-      color: #B2F0E5;
-      margin: 18px 0 22px;
-    }
-    .price small {
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: #7c8f9e;
-    }
-    .buy-link {
-      background: transparent;
-      border: 1px solid #5B8CFF;
-      padding: 12px 0;
-      width: 100%;
-      border-radius: 100px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-      font-size: 1rem;
+    .price-row {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #5B8CFF;
-      font-family: inherit;
-      margin-top: auto;
-    }
-    .buy-link:hover {
-      background: #5B8CFF;
-      color: #0a0c10;
-      border-color: #5B8CFF;
-    }
-
-    .detail-btn {
-      background: transparent;
-      border: 1px solid #4a5b7a;
-      padding: 10px 0;
-      width: 100%;
-      border-radius: 100px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: 0.2s;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: #b9c3cf;
-      font-family: inherit;
+      align-items: baseline;
+      justify-content: space-between;
       margin-bottom: 12px;
     }
-    .detail-btn:hover {
-      background: rgba(91,140,255,0.15);
-      border-color: #5B8CFF;
-      color: #B2F0E5;
+    .price {
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .btn-card {
+      background: var(--bg-body);
+      border: 1px solid var(--border-subtle);
+      border-radius: 30px;
+      padding: 6px 16px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      margin-top: 12px;
+      width: 100%;
+    }
+    .btn-card:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
     }
 
     .badge-free {
@@ -289,11 +367,12 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(91,140,255,0.15);
+      background: var(--platform-bg);
       padding: 4px 12px;
       border-radius: 50px;
       font-size: 0.7rem;
-      color: #B2F0E5;
+      color: var(--platform-text);
+      font-weight: 500;
     }
 
     .badge-group {
@@ -304,550 +383,469 @@
       margin-bottom: 16px;
     }
 
-    .features {
-      background: #0e131c;
-      border-radius: 48px;
-      padding: 52px 32px;
-      margin: 70px 0 50px;
-      border: 1px solid #1a2530;
-    }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-      gap: 40px;
-      margin-top: 40px;
-    }
-    .feature-item {
-      text-align: center;
-      padding: 8px;
-    }
-    .feature-item i {
-      font-size: 2.5rem;
-      background: rgba(91,140,255,0.1);
-      padding: 16px;
-      border-radius: 32px;
-      color: #B2F0E5;
-      margin-bottom: 20px;
-      display: inline-block;
-    }
-    .feature-item h4 {
-      font-size: 1.35rem;
-      margin-bottom: 12px;
-      font-weight: 600;
-      letter-spacing: -0.2px;
-      color: #e0e8f0;
-    }
-    .feature-item p {
-      color: #8a9cb0;
-      font-size: 0.95rem;
-      line-height: 1.45;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      overflow-y: auto;
-      padding: 20px;
-    }
-    .modal-content {
-      background: #11161f;
-      max-width: 700px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      border-radius: 36px;
-      padding: 32px;
-      border: 1px solid #2a3a4a;
-      position: relative;
-      animation: fadeIn 0.2s ease;
-    }
-    .modal-content::-webkit-scrollbar {
-      width: 6px;
-    }
-    .modal-content::-webkit-scrollbar-track {
-      background: #1e2a36;
-      border-radius: 10px;
-    }
-    .modal-content::-webkit-scrollbar-thumb {
-      background: #5B8CFF;
-      border-radius: 10px;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .modal-close {
-      position: sticky;
-      top: 0;
-      float: right;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: #8da0b0;
-      transition: 0.2s;
-      background: #11161f;
-      padding-left: 12px;
-      z-index: 10;
-    }
-    .modal-close:hover {
-      color: #B2F0E5;
-    }
-    .modal-icon {
-      font-size: 2.5rem;
-      color: #5B8CFF;
-      margin-bottom: 16px;
-      clear: both;
-    }
-    .modal-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .modal-desc {
-      color: #9aaebf;
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-    .modal-platform {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(91,140,255,0.15);
-      padding: 6px 14px;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      margin-bottom: 20px;
-    }
-    .role-section {
-      background: #0a0c10;
-      border-radius: 24px;
-      padding: 20px;
-      margin-top: 20px;
-    }
-    .role-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #B2F0E5;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .role-list {
-      list-style: none;
-      padding-left: 8px;
-    }
-    .role-list li {
-      color: #b9c3cf;
-      font-size: 0.85rem;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .role-list li i {
-      color: #5B8CFF;
-      font-size: 0.7rem;
-    }
-
-    footer {
-      background: #05070a;
-      margin-top: 90px;
-      padding: 48px 0 28px;
-      border-top: 1px solid #18222c;
+    .footer {
+      background: var(--bg-surface);
+      margin-top: 60px;
+      padding: 40px 32px 24px;
+      border-top: 1px solid var(--border-subtle);
     }
     .footer-inner {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 40px;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 32px;
     }
     .footer-logo {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #B2F0E5, #5B8CFF);
+      background: linear-gradient(135deg, var(--text-primary), var(--accent));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-bottom: 14px;
+      margin-bottom: 8px;
     }
-    .social-icons i {
-      font-size: 1.3rem;
-      margin-right: 20px;
-      color: #6c8196;
+    .footer-whatsapp {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg-elevated);
+      padding: 8px 20px;
+      border-radius: 40px;
+      text-decoration: none;
+      color: var(--text-primary);
       transition: 0.2s;
+      border: 1px solid var(--border-subtle);
     }
-    .social-icons i:hover { color: #B2F0E5; }
+    .footer-whatsapp:hover {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: white;
+    }
+    .footer-whatsapp i {
+      font-size: 20px;
+      color: #25D366;
+    }
+    .footer-whatsapp:hover i {
+      color: white;
+    }
     .copyright {
       text-align: center;
-      margin-top: 48px;
-      font-size: 0.8rem;
-      color: #5f7487;
+      font-size: 11px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 24px;
     }
-    .social-icons a {
-    color: white;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-  }
-    @media (max-width: 768px) {
-      .hero-content h1 { font-size: 2.5rem; }
-      .hero-content p { max-width: 100%; }
-      .navbar { flex-direction: column; align-items: flex-start; }
-      .features-grid { gap: 28px; }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-card {
+      background: var(--bg-card);
+      max-width: 480px;
+      width: 90%;
+      border-radius: 28px;
+      padding: 28px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow);
+    }
+    .modal-card h3 {
+      font-size: 26px;
+    }
+    .modal-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .close-modal, .buy-now {
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+    .close-modal {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+    }
+    .buy-now {
+      background: var(--accent);
+      color: white;
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 0 20px; }
+      .hero-banner { padding: 28px; text-align: center; }
+      .hero-icon { display: none; }
+      .hero-text h1 { font-size: 1.8rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
-<header>
-  <div class="container">
-    <div class="navbar">
-      <div class="logo">
-        <i class="fas fa-code"></i>
-        <span>Dev<span style="color:#B2F0E5;">Apps</span></span>
+  <header class="main-header">
+    <div class="container">
+      <div class="header-wrapper">
+        <div class="logo-area">
+          <i class="fas fa-code store-icon"></i>
+          <span class="store-name">Dev Apps Store</span>
+          <span class="store-badge">beta</span>
+        </div>
+        <div class="search-container">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Cari aplikasi Android / website ...">
+          </div>
+        </div>
+        <div class="nav-icons">
+          <div class="theme-toggle">
+            <i class="fas fa-sun" id="lightThemeBtn" style="opacity:0.7;"></i>
+            <i class="fas fa-moon" id="darkThemeBtn" style="opacity:1;"></i>
+          </div>
+        </div>
       </div>
-      <ul class="nav-links">
-        <li><a href="#aplikasi">Aplikasi</a></li>
-        <li><a href="#fitur">Keunggulan</a></li>
-      </ul>
+    </div>
+  </header>
+
+  <div class="category-strip">
+    <div class="container">
+      <div class="categories" id="categoriesFilter">
+        <span class="active" data-cat="all">Semua</span>
+        <span data-cat="android">Aplikasi Android</span>
+        <span data-cat="website">Website Tools</span>
+      </div>
     </div>
   </div>
-</header>
 
-<main>
   <div class="container">
-    <div class="hero">
-      <div class="hero-content">
-        <div class="hero-badge"><i class="fas fa-globe"></i>  android & website platform</div>
-        <h1>Dev Apps<br>toko aplikasi android & website</h1>
-        <p>Temukan berbagai aplikasi mobile Android dan website. Siap pakai untuk kebutuhan Anda.</p>
-        <a href="#aplikasi" class="buy-link" style="width: auto; padding: 12px 32px; display: inline-flex;">Jelajahi Sekarang →</a>
+    <div class="hero-banner">
+      <div class="hero-text">
+        <h1>Dev Apps</h1>
+        <p>toko aplikasi android & website<br>Temukan berbagai aplikasi mobile Android dan website. Siap pakai untuk kebutuhan Anda.</p>
+        <button class="btn-primary" id="heroShopBtn">Jelajahi Sekarang →</button>
       </div>
-      <div class="hero-image">
+      <div class="hero-icon">
         <i class="fab fa-android"></i>
         <i class="fas fa-globe"></i>
-        <i class="fas fa-laptop-code"></i>
-        <p style="margin-top: 22px; font-size: 0.85rem; opacity: 0.7;">Android · Website</p>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h2>Koleksi Aplikasi</h2>
+      <span class="section-link">Lihat semua →</span>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+
+    <div class="section-header">
+      <h2>Rekomendasi untuk Anda</h2>
+      <span class="section-link">Koleksi Pilihan</span>
+    </div>
+    <div class="product-grid" id="recommendedGrid"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo"><i class="fas fa-code"></i> Dev Apps Store</div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">toko aplikasi Android & Website</p>
+        </div>
+        <a href="https://wa.me/6282129665556" target="_blank" class="footer-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp 082129665556</span>
+        </a>
+      </div>
+      <div class="copyright">© 2026 Dev Apps Store — Toko aplikasi Android & Website</div>
+    </div>
+  </footer>
+
+  <div id="productModal" class="modal">
+    <div class="modal-card">
+      <h3 id="modalTitle"></h3>
+      <div class="modal-detail" id="modalDesc" style="margin: 16px 0; color: var(--text-secondary);"></div>
+      <div><strong id="modalPrice"></strong></div>
+      <div class="modal-buttons">
+        <button class="close-modal" id="closeModalBtn">Tutup</button>
+        <button class="buy-now" id="modalBuyBtn">Beli Sekarang</button>
       </div>
     </div>
   </div>
 
-  <div class="container" id="aplikasi">
-    <div class="section-title">📱 koleksi aplikasi</div>
-    <div class="section-sub">aplikasi Android & Website, gratis dan berbayar</div>
-    <div class="products-grid" id="allAppsContainer"></div>
-  </div>
-
-  <div class="container" id="fitur">
-    <div class="features">
-      <div class="section-title" style="font-size: 1.8rem;">mengapa dev apps?</div>
-      <div class="features-grid">
-        <div class="feature-item">
-          <i class="fas fa-rocket"></i>
-          <h4>Instan deploy</h4>
-          <p>Siap pakai</p>
-        </div>
-        <div class="feature-item">
-          <i class="fas fa-chalkboard-user"></i>
-          <h4>Garansi Tutorial</h4>
-          <p>Tutorial sampai aplikasi bisa dipakai.</p>
-        </div>
-        <div class="feature-item">
-          <i class="fas fa-infinity"></i>
-          <h4>Lifetime</h4>
-          <p>Sekali beli untuk seumur hidup.</p>
-        </div>
-        <div class="feature-item">
-          <i class="fas fa-gift"></i>
-          <h4>Ada Aplikasi Gratis</h4>
-          <p>Tersedia aplikasi free yang bisa langsung kamu unduh.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
-
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo"><i class="fas fa-code"></i> DevApps</div>
-        <p style="max-width: 340px; color:#7d8e9e;">toko aplikasi Android & Website</p>
-          <div class="social-icons" style="margin-top: 18px;">
-            <a href="https://wa.me/+6282129665556" target="_blank">
-              <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-          </div>
-      </div>
-    </div>
-    <div class="copyright">© 2026 Dev Apps — toko aplikasi Android & Website</div>
-  </div>
-</footer>
-
-<div id="detailModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-close" onclick="closeModal()">&times;</div>
-    <div class="modal-icon" id="modalIcon"></div>
-    <div class="modal-title" id="modalTitle"></div>
-    <div class="modal-platform" id="modalPlatform"></div>
-    <div class="modal-desc" id="modalDesc"></div>
-    <div id="modalPrice" style="font-size: 1.3rem; font-weight: 700; color: #B2F0E5; margin-bottom: 20px;"></div>
-    <div id="modalRoleDetails"></div>
-  </div>
-</div>
-
-<script>
-  const allAppsData = [
-    {
-      id: 1,
-      name: "Catatan Investasi",
-      shortDesc: "Hitung margin keuntungan bisnis dengan mudah, cocok untuk pedagang dan pebisnis digital.",
-      fullDesc: "Aplikasi Catatan Investasi membantu Anda menghitung margin keuntungan bisnis dengan akurat. Dilengkapi fitur pencatatan transaksi, analisis keuntungan, laporan bulanan, dan grafik performa investasi. Cocok untuk pedagang, pebisnis digital, dan siapa saja yang ingin memantau perkembangan investasi dengan mudah dan cepat.",
-      icon: "fas fa-chart-line",
-      platform: "Android",
-      price: 0,
-      priceText: "Gratis",
-      buyLink: "https://play.google.com/store/apps/details?id=com.devapp.profitcalc&hl=id",
-      isFree: true,
-      type: "free"
-    },
-    {
-      id: 2,
-      name: "Atur Uang",
-      shortDesc: "Kelola keuangan pribadi, catatan pemasukan & pengeluaran sederhana namun powerful.",
-      fullDesc: "Atur Uang adalah aplikasi pencatat keuangan pribadi yang sederhana namun powerful. Fitur utama: catat pemasukan dan pengeluaran, buat budget bulanan, lihat sisa saldo realtime, dan laporan keuangan mingguan. Cocok untuk Anda yang ingin lebih disiplin dalam mengelola keuangan sehari-hari.",
-      icon: "fas fa-wallet",
-      platform: "Android",
-      price: 0,
-      priceText: "Gratis",
-      buyLink: "https://play.google.com/store/apps/details?id=com.djrproject.aturuang&hl=id",
-      isFree: true,
-      type: "free"
-    },
-    {
-      id: 3,
-      name: "Sistem Manajemen Inventory",
-      shortDesc: "Kelola stok barang, tracking masuk keluar, laporan realtime, dan manajemen gudang lengkap.",
-      fullDesc: "Sistem Manajemen Inventory adalah aplikasi web untuk mengelola stok barang, tracking barang masuk dan keluar, manajemen gudang multi-lokasi, laporan stok realtime, notifikasi stok menipis, dan analisis pergerakan barang. Dilengkapi dengan source code lengkap sehingga Anda bisa mengembangkan dan menyesuaikan sesuai kebutuhan bisnis.",
-      icon: "fas fa-boxes",
-      platform: "Website",
-      price: 499000,
-      priceText: "Rp3.499.000",
-      buyLink: "#",
-      isFree: false,
-      hasSourceCode: true,
-      type: "paid",
-      roleDetails: {
-        admin: {
-          title: "👑 Admin - Akses Penuh",
-          items: [
-            "Manajemen produk, member, reseller, supplier",
-            "Purchase Order (pembelian barang)",
-            "Retur pembelian ke supplier",
-            "Manajemen user dan backup database",
-            "Aktivitas log"
-          ]
-        },
-        pimpinan: {
-          title: "📊 Pimpinan - Akses Laporan Lengkap (Read Only)",
-          items: [
-            "Laporan Laba Rugi",
-            "Laporan Arus Kas",
-            "Laporan Omset Penjualan",
-            "Laporan Profit per Produk",
-            "Laporan Hutang & Piutang",
-            "Semua Transaksi"
-          ]
-        },
-        kasir: {
-          title: "🛒 Kasir - Fokus Transaksi Penjualan",
-          items: [
-            "Transaksi penjualan dengan keranjang",
-            "Diskon otomatis (member/reseller/diskon khusus)",
-            "Retur penjualan langsung",
-            "Piutang member",
-            "Riwayat transaksi"
-          ]
+  <script>
+    const products = [
+      {
+        id: 1,
+        name: "Catatan Investasi",
+        shortDesc: "Hitung margin keuntungan bisnis dengan mudah, cocok untuk pedagang dan pebisnis digital.",
+        fullDesc: "Aplikasi Catatan Investasi membantu Anda menghitung margin keuntungan bisnis dengan akurat. Dilengkapi fitur pencatatan transaksi, analisis keuntungan, laporan bulanan, dan grafik performa investasi. Cocok untuk pedagang, pebisnis digital, dan siapa saja yang ingin memantau perkembangan investasi dengan mudah dan cepat.",
+        icon: "fas fa-chart-line",
+        platform: "Android",
+        price: 0,
+        priceText: "Gratis",
+        buyLink: "https://play.google.com/store/apps/details?id=com.devapp.profitcalc&hl=id",
+        isFree: true,
+        category: "android"
+      },
+      {
+        id: 2,
+        name: "Atur Uang",
+        shortDesc: "Kelola keuangan pribadi, catatan pemasukan & pengeluaran sederhana namun powerful.",
+        fullDesc: "Atur Uang adalah aplikasi pencatat keuangan pribadi yang sederhana namun powerful. Fitur utama: catat pemasukan dan pengeluaran, buat budget bulanan, lihat sisa saldo realtime, dan laporan keuangan mingguan. Cocok untuk Anda yang ingin lebih disiplin dalam mengelola keuangan sehari-hari.",
+        icon: "fas fa-wallet",
+        platform: "Android",
+        price: 0,
+        priceText: "Gratis",
+        buyLink: "https://play.google.com/store/apps/details?id=com.djrproject.aturuang&hl=id",
+        isFree: true,
+        category: "android"
+      },
+      {
+        id: 3,
+        name: "Sistem Manajemen Inventory",
+        shortDesc: "Kelola stok barang, tracking masuk keluar, laporan realtime, dan manajemen gudang lengkap.",
+        fullDesc: "Sistem Manajemen Inventory adalah aplikasi web untuk mengelola stok barang, tracking barang masuk dan keluar, manajemen gudang multi-lokasi, laporan stok realtime, notifikasi stok menipis, dan analisis pergerakan barang. Dilengkapi dengan source code lengkap sehingga Anda bisa mengembangkan dan menyesuaikan sesuai kebutuhan bisnis.",
+        icon: "fas fa-boxes",
+        platform: "Website",
+        price: 3499000,
+        priceText: "Rp3.499.000",
+        buyLink: "#",
+        isFree: false,
+        hasSourceCode: true,
+        category: "website",
+        roleDetails: {
+          admin: {
+            title: "Admin - Akses Penuh",
+            items: [
+              "Manajemen produk, member, reseller, supplier",
+              "Purchase Order (pembelian barang)",
+              "Retur pembelian ke supplier",
+              "Manajemen user dan backup database",
+              "Aktivitas log"
+            ]
+          },
+          pimpinan: {
+            title: "Pimpinan - Akses Laporan Lengkap (Read Only)",
+            items: [
+              "Laporan Laba Rugi",
+              "Laporan Arus Kas",
+              "Laporan Omset Penjualan",
+              "Laporan Profit per Produk",
+              "Laporan Hutang & Piutang",
+              "Semua Transaksi"
+            ]
+          },
+          kasir: {
+            title: "Kasir - Fokus Transaksi Penjualan",
+            items: [
+              "Transaksi penjualan dengan keranjang",
+              "Diskon otomatis (member/reseller/diskon khusus)",
+              "Retur penjualan langsung",
+              "Piutang member",
+              "Riwayat transaksi"
+            ]
+          }
         }
       }
-    }
-  ];
+    ];
 
-  function renderAllApps() {
-    const container = document.getElementById("allAppsContainer");
-    if (!container) return;
-    container.innerHTML = "";
-    allAppsData.forEach(app => {
-      const card = document.createElement("div");
-      card.className = "product-card";
+    const recommended = products.filter(p => p.id === 1 || p.id === 3);
+
+    let currentCategory = "all";
+    let searchQuery = "";
+
+    function renderProducts() {
+      let filtered = [...products];
+      if (currentCategory !== "all") {
+        filtered = filtered.filter(p => p.category === currentCategory);
+      }
+      if (searchQuery.trim() !== "") {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || p.shortDesc.toLowerCase().includes(q));
+      }
+      const grid = document.getElementById("productGrid");
+      if (grid) grid.innerHTML = filtered.map(prod => createProductCard(prod)).join("");
       
+      const recGrid = document.getElementById("recommendedGrid");
+      if (recGrid) recGrid.innerHTML = recommended.map(prod => createProductCard(prod)).join("");
+      
+      attachCardEvents();
+    }
+
+    function createProductCard(p) {
       let platformIcon = '';
-      if (app.platform === "Android") {
+      if (p.platform === "Android") {
         platformIcon = '<span class="platform-icon"><i class="fab fa-android"></i> Android</span>';
       } else {
         platformIcon = '<span class="platform-icon"><i class="fas fa-globe"></i> Website</span>';
       }
       
       let badgeHtml = '';
-      if (app.isFree) {
+      if (p.isFree) {
         badgeHtml = '<span class="badge-free"><i class="fas fa-gift"></i> GRATIS</span>';
-      } else if (app.hasSourceCode) {
+      } else if (p.hasSourceCode) {
         badgeHtml = '<span class="badge-paid"><i class="fas fa-crown"></i> PREMIUM</span><span class="badge-source"><i class="fas fa-code"></i> Source Code</span>';
       } else {
         badgeHtml = '<span class="badge-paid"><i class="fas fa-crown"></i> PREMIUM</span>';
       }
       
       let priceHtml = '';
-      if (app.isFree) {
-        priceHtml = `<div class="price" style="color:#2a8c5e;">Rp0 <small>free</small></div>`;
+      if (p.isFree) {
+        priceHtml = `<div class="price">Rp0 <small>free</small></div>`;
       } else {
-        priceHtml = `<div class="price">${app.priceText} <small>Customizable</small></div>`;
+        priceHtml = `<div class="price">${p.priceText} <small>Customizable</small></div>`;
       }
       
       let buttonHtml = '';
-      if (app.isFree) {
-        buttonHtml = `<a href="${app.buyLink}" class="buy-link" target="_blank" rel="noopener noreferrer">
+      if (p.isFree) {
+        buttonHtml = `<a href="${p.buyLink}" class="btn-card" style="display: block; text-align: center; text-decoration: none;" target="_blank" rel="noopener noreferrer" data-id="${p.id}">
           <i class="fab fa-google-play"></i> Download di Play Store
         </a>`;
       } else {
-        buttonHtml = `<a href="${app.buyLink}" class="buy-link" target="_blank" rel="noopener noreferrer">
+        buttonHtml = `<button class="btn-card" data-id="${p.id}">
           <i class="fas fa-arrow-right"></i> Beli sekarang
-        </a>`;
+        </button>`;
       }
       
-      card.innerHTML = `
-        <div class="product-icon"><i class="${app.icon}"></i></div>
-        <div class="badge-group">
-          ${platformIcon}
-          ${badgeHtml}
+      return `
+        <div class="product-card" data-id="${p.id}">
+          <div class="card-img"><i class="${p.icon}" style="font-size: 60px;"></i></div>
+          <div class="card-content">
+            <div class="badge-group">
+              ${platformIcon}
+              ${badgeHtml}
+            </div>
+            <div class="product-title">${p.name}</div>
+            <div class="product-desc">${p.shortDesc}</div>
+            <div class="price-row">
+              ${priceHtml}
+            </div>
+            ${buttonHtml}
+          </div>
         </div>
-        <div class="product-title">${app.name}</div>
-        <div class="product-desc">${app.shortDesc}</div>
-        ${priceHtml}
-        <button class="detail-btn" data-id="${app.id}">
-          <i class="fas fa-info-circle"></i> Detail
-        </button>
-        ${buttonHtml}
       `;
-      container.appendChild(card);
-    });
-    
-    document.querySelectorAll('.detail-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const id = parseInt(btn.getAttribute('data-id'));
-        const app = allAppsData.find(a => a.id === id);
-        if (app) {
-          openModal(app);
-        }
+    }
+
+    function attachCardEvents() {
+      document.querySelectorAll('.product-card').forEach(card => {
+        const id = parseInt(card.getAttribute('data-id'));
+        card.addEventListener('click', (e) => {
+          if(e.target.classList.contains('btn-card') || e.target.closest('.btn-card')) {
+            e.stopPropagation();
+            const btnId = e.target.closest('.btn-card')?.getAttribute('data-id') || id;
+            const product = products.find(p => p.id == btnId);
+            if(product && !product.isFree && product.buyLink === '#') {
+              e.preventDefault();
+              showProductDetail(parseInt(btnId));
+            } else if(product && product.isFree) {
+              return;
+            } else if(product && !product.isFree && product.buyLink !== '#') {
+              window.open(product.buyLink, '_blank');
+            } else {
+              showProductDetail(parseInt(btnId));
+            }
+          } else {
+            showProductDetail(id);
+          }
+        });
+      });
+      
+      document.querySelectorAll('.btn-card').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = parseInt(btn.getAttribute('data-id'));
+          const product = products.find(p => p.id === id);
+          if(product && product.isFree) {
+            return;
+          }
+          if(product && !product.isFree && product.buyLink !== '#') {
+            window.open(product.buyLink, '_blank');
+          } else {
+            showProductDetail(id);
+          }
+        });
+      });
+    }
+
+    function showProductDetail(id) {
+      const product = products.find(p => p.id === id);
+      if(!product) return;
+      document.getElementById("modalTitle").innerText = product.name;
+      let detailHtml = product.fullDesc;
+      if(product.roleDetails) {
+        detailHtml += '<br><br><strong>Detail Role Akses:</strong><br>';
+        detailHtml += '<br><strong>' + product.roleDetails.admin.title + '</strong><ul>';
+        product.roleDetails.admin.items.forEach(item => { detailHtml += '<li>' + item + '</li>'; });
+        detailHtml += '</ul><strong>' + product.roleDetails.pimpinan.title + '</strong><ul>';
+        product.roleDetails.pimpinan.items.forEach(item => { detailHtml += '<li>' + item + '</li>'; });
+        detailHtml += '</ul><strong>' + product.roleDetails.kasir.title + '</strong><ul>';
+        product.roleDetails.kasir.items.forEach(item => { detailHtml += '<li>' + item + '</li>'; });
+        detailHtml += '</ul>';
+      }
+      document.getElementById("modalDesc").innerHTML = detailHtml;
+      document.getElementById("modalPrice").innerHTML = `Harga: ${product.priceText}`;
+      const modal = document.getElementById("productModal");
+      modal.style.display = "flex";
+      const buyBtn = document.getElementById("modalBuyBtn");
+      buyBtn.onclick = () => {
+        alert(`✅ ${product.name} pesanan akan diproses. Hubungi WhatsApp untuk pembelian.`);
+        modal.style.display = "none";
+      };
+    }
+
+    document.querySelectorAll('#categoriesFilter span').forEach(catEl => {
+      catEl.addEventListener('click', () => {
+        document.querySelectorAll('#categoriesFilter span').forEach(c => c.classList.remove('active'));
+        catEl.classList.add('active');
+        currentCategory = catEl.getAttribute('data-cat');
+        renderProducts();
       });
     });
-    
-    const allBuyLinks = document.querySelectorAll('#allAppsContainer .buy-link');
-    allBuyLinks.forEach(link => {
-      if(link.getAttribute('href') === '#') {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          alert('🔗 Tautan pembelian akan segera tersedia. Hubungi admin untuk info lebih lanjut.');
-        });
-      }
+
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderProducts();
     });
-  }
 
-  function openModal(app) {
-    const modal = document.getElementById('detailModal');
-    const modalIcon = document.getElementById('modalIcon');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalPlatform = document.getElementById('modalPlatform');
-    const modalDesc = document.getElementById('modalDesc');
-    const modalPrice = document.getElementById('modalPrice');
-    const modalRoleDetails = document.getElementById('modalRoleDetails');
-    
-    let platformIcon = '';
-    if (app.platform === "Android") {
-      platformIcon = '<i class="fab fa-android"></i> Android';
-    } else {
-      platformIcon = '<i class="fas fa-globe"></i> Website';
-    }
-    
-    let sourceCodeText = '';
-    if (app.hasSourceCode) {
-      sourceCodeText = ' + <i class="fas fa-code"></i> Source Code';
-    }
-    
-    modalIcon.innerHTML = `<i class="${app.icon}"></i>`;
-    modalTitle.innerText = app.name;
-    modalPlatform.innerHTML = platformIcon + sourceCodeText;
-    modalDesc.innerText = app.fullDesc;
-    
-    if (app.isFree) {
-      modalPrice.innerHTML = '💰 Gratis';
-    } else {
-      modalPrice.innerHTML = `💰 ${app.priceText} <span style="font-size:0.9rem;">(lifetime + source code)</span>`;
-    }
-    
-    if (app.roleDetails) {
-      modalRoleDetails.innerHTML = `
-        <div class="role-section">
-          <div class="role-title">${app.roleDetails.admin.title}</div>
-          <ul class="role-list">
-            ${app.roleDetails.admin.items.map(item => `<li><i class="fas fa-check-circle"></i> ${item}</li>`).join('')}
-          </ul>
-        </div>
-        <div class="role-section">
-          <div class="role-title">${app.roleDetails.pimpinan.title}</div>
-          <ul class="role-list">
-            ${app.roleDetails.pimpinan.items.map(item => `<li><i class="fas fa-chart-line"></i> ${item}</li>`).join('')}
-          </ul>
-        </div>
-        <div class="role-section">
-          <div class="role-title">${app.roleDetails.kasir.title}</div>
-          <ul class="role-list">
-            ${app.roleDetails.kasir.items.map(item => `<li><i class="fas fa-shopping-cart"></i> ${item}</li>`).join('')}
-          </ul>
-        </div>
-      `;
-    } else {
-      modalRoleDetails.innerHTML = '';
-    }
-    
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    const modal = document.getElementById('detailModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
-
-  window.onclick = function(event) {
-    const modal = document.getElementById('detailModal');
-    if (event.target === modal) {
-      closeModal();
-    }
-  }
-
-  renderAllApps();
-
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href');
-      if(targetId === "#" || targetId === "") return;
-      const targetElement = document.querySelector(targetId);
-      if(targetElement) {
-        e.preventDefault();
-        targetElement.scrollIntoView({ behavior: 'smooth' });
-      }
+    document.getElementById("heroShopBtn")?.addEventListener('click', () => {
+      window.scrollTo({ top: 400, behavior: "smooth" });
     });
-  });
-</script>
+
+    const modal = document.getElementById("productModal");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    closeModalBtn.onclick = () => modal.style.display = "none";
+    window.onclick = (e) => { if(e.target === modal) modal.style.display = "none"; };
+
+    const body = document.body;
+    const darkBtn = document.getElementById("darkThemeBtn");
+    const lightBtn = document.getElementById("lightThemeBtn");
+    
+    body.classList.remove('light');
+    
+    darkBtn.addEventListener('click', () => {
+      body.classList.remove('light');
+      darkBtn.style.opacity = '1';
+      lightBtn.style.opacity = '0.7';
+    });
+    lightBtn.addEventListener('click', () => {
+      body.classList.add('light');
+      lightBtn.style.opacity = '1';
+      darkBtn.style.opacity = '0.7';
+    });
+    darkBtn.style.opacity = '1';
+    lightBtn.style.opacity = '0.7';
+    
+    renderProducts();
+  </script>
 </body>
 </html>
